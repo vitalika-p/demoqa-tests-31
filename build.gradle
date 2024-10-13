@@ -7,10 +7,11 @@ repositories {
 }
 
 dependencies {
-    testImplementation(
-            "org.junit.jupiter:junit-jupiter:5.11.2",
-            "com.codeborne:selenide:7.5.1"
-    )
+    testImplementation platform('org.junit:junit-bom:5.10.0')
+    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testImplementation 'org.slf4j:slf4j-simple:2.0.7'
+    testImplementation 'com.codeborne:selenide:7.5.1'
+    testImplementation 'io.github.bonigarcia:webdrivermanager:5.9.2'
 }
 
 test {
