@@ -24,6 +24,7 @@ public class registrationPage {
             stateComponent2 =$("#react-select-3-input"),
             cityComponent = $("#city"),
             cityComponent2 = $("#react-select-4-input"),
+            responseMessage = $(".h3-response"),
             submitButton = $("#submit");
 
     pages.components.calendarComponent calendarComponent = new calendarComponent();
@@ -106,12 +107,15 @@ public class registrationPage {
     }
 
     public registrationPage checkResult(String key, String value) {
-        resultsTable.checkTableValue(key, value);
+        resultsTableComponent.checkResults(key, value);
+
         return this;
     }
 
-    public registrationPage checkNoResults(String key) {
-        resultsTable.checkTableValueIsEmpty(key);
+    public registrationPage checkNoResults(){
+        resultsTableComponent.checkResultIsNotVisible();
+
+
         return this;
     }
 

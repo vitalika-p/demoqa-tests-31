@@ -38,30 +38,32 @@ public class registrationTests extends testBase {
     }
 
     @Test
-    void fillFormTest(){
-        registrationPage.openPage()
-                .setFirstName("Ivan")
+    void minimalFormTest(){
+        registrationPage
+                .openPage()
+                .setFirstName("Andrey")
                 .setLastName("Ivanov")
                 .setGender("Male")
                 .setUserNumber("1234567890")
-                .setDateOfBirth("15", "December","1989")
                 .submit();
 
-        registrationPage.checkResult("Student Name", "Ivan Ivanov")
-                .checkResult("Gender", "Male")
-                .checkResult("Mobile", "1234567890")
-                .checkResult("Date of Birth", "15 December,1989");
+        registrationPage
+                .checkResult("Student Name", "Andrey Ivanov")
+                .checkResult("Gender", "Male");
+
     }
     @Test
-    void incorrectNumberTest(){
-        registrationPage.openPage()
-                .setFirstName("")
-                .setLastName("Petrov")
-                .setGender("Male")
+    void invalidEmailAndNumberTest(){
+        registrationPage
+                .openPage()
+                .setFirstName("Ivan")
+                .setLastName("Ivanov")
+                .setUserEmail("")
+                .setGender("Other")
                 .setUserNumber("1234567890")
-                .setDateOfBirth("23", "March","1989")
+                .setDateOfBirth("25", "December", "1989")
                 .submit();
 
-        registrationPage.checkNoResults("No results found");
+        registrationPage.checkNoResults();
     }
 }
