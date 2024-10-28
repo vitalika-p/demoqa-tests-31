@@ -1,5 +1,4 @@
 import com.codeborne.selenide.Configuration;
-import io.github.bonigarcia.wdm.WebDriverManager;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.Keys;
@@ -7,9 +6,8 @@ import org.openqa.selenium.Keys;
 import static com.codeborne.selenide.Condition.text;
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
-import static io.github.bonigarcia.wdm.WebDriverManager.*;
 
-public class TextBoxTests {
+public class textBoxTests {
 
     @BeforeAll
     static void beforeAll() {
@@ -17,7 +15,6 @@ public class TextBoxTests {
         Configuration.browser = "chrome";
         Configuration.baseUrl = "https://demoqa.com";
         Configuration.pageLoadStrategy = "eager";
-        chromedriver().setup();
     }
 
     @Test
@@ -34,8 +31,8 @@ public class TextBoxTests {
         $("#userNumber").setValue("1234567891");
         actions().moveToElement($("#dateOfBirthInput")).click().build().perform();
         $(".react-datepicker__month-select").$(byText("December")).click();
-        $(".react-datepicker__year-select").$(byText("1990")).click();
-        $(".react-datepicker__day.react-datepicker__day--005").click();
+        $(".react-datepicker__year-select").$(byText("1989")).click();
+        $(".react-datepicker__day.react-datepicker__day--17").click();
         $("#subjectsInput").setValue("B").sendKeys(Keys.ENTER);
         $("#hobbies-checkbox-2").parent().click();
         $("#hobbies-checkbox-3").parent().click();
@@ -52,7 +49,7 @@ public class TextBoxTests {
         $(".table-responsive").shouldHave(text("ivanov@email.com"));
         $(".table-responsive").shouldHave(text("Male"));
         $(".table-responsive").shouldHave(text("1234567891"));
-        $(".table-responsive").shouldHave(text("05 December,1990"));
+        $(".table-responsive").shouldHave(text("17 December,1989"));
         $(".table-responsive").shouldHave(text("Biology"));
         $(".table-responsive").shouldHave(text("Reading"));
         $(".table-responsive").shouldHave(text("Music"));
