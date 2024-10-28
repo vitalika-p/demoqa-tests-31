@@ -107,19 +107,12 @@ public class registrationPage {
 
     public registrationPage checkResult(String key, String value) {
         resultsTable.checkTableValue(key, value);
-
         return this;
     }
 
-    public registrationPage checkResultValueIsEmpty(String key) {
+    public registrationPage checkNoResults(String key) {
         resultsTable.checkTableValueIsEmpty(key);
-
         return this;
     }
 
-    public registrationPage checkResultIsNotVisible() {
-        resultsTable.checkTableIsNotVisible();
-        return this;
-
-    }
 }

@@ -6,7 +6,7 @@ public class registrationTests extends testBase {
     pages.registrationPage registrationPage = new registrationPage();
 
     @Test
-    void fillFormTest() {
+    void fillFullFormTest() {
         registrationPage
                 .openPage()
                 .setFirstName("Ivan")
@@ -37,4 +37,31 @@ public class registrationTests extends testBase {
 
     }
 
+    @Test
+    void fillFormTest(){
+        registrationPage.openPage()
+                .setFirstName("Ivan")
+                .setLastName("Ivanov")
+                .setGender("Male")
+                .setUserNumber("1234567890")
+                .setDateOfBirth("15", "December","1989")
+                .submit();
+
+        registrationPage.checkResult("Student Name", "Ivan Ivanov")
+                .checkResult("Gender", "Male")
+                .checkResult("Mobile", "1234567890")
+                .checkResult("Date of Birth", "15 December,1989");
+    }
+    @Test
+    void incorrectNumberTest(){
+        registrationPage.openPage()
+                .setFirstName("")
+                .setLastName("Petrov")
+                .setGender("Male")
+                .setUserNumber("1234567890")
+                .setDateOfBirth("23", "March","1989")
+                .submit();
+
+        registrationPage.checkNoResults("No results found");
+    }
 }

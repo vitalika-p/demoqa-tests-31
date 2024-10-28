@@ -15,7 +15,4 @@ public class resultsTableComponent {
                 .shouldBe(empty);
     }
 
-    public void checkTableIsNotVisible() {
-        $(".table").shouldNotBe(visible);
-    }
 }
