@@ -2,13 +2,13 @@ package pages;
 
 import com.codeborne.selenide.SelenideElement;
 import org.openqa.selenium.Keys;
-import pages.components.calendarComponent;
-import pages.components.resultsTableComponent;
+import pages.components.CalendarComponent;
+import pages.components.ResultsTableComponent;
 
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
-public class registrationPage {
+public class RegistrationPage {
 
     private SelenideElement firstNameInput = $("#firstName"),
             lastNameInput = $("#lastName"),
@@ -27,93 +27,93 @@ public class registrationPage {
             responseMessage = $(".h3-response"),
             submitButton = $("#submit");
 
-    pages.components.calendarComponent calendarComponent = new calendarComponent();
-    resultsTableComponent resultsTable = new resultsTableComponent();
+    CalendarComponent calendarComponent = new CalendarComponent();
+    ResultsTableComponent resultsTable = new ResultsTableComponent();
 
-    public registrationPage openPage() {
+    public RegistrationPage openPage() {
         open("/automation-practice-form");
         executeJavaScript("$('#fixedban').remove()");
         executeJavaScript("$('footer').remove()");
         return this;
     }
 
-    public registrationPage setFirstName(String value) {
+    public RegistrationPage setFirstName(String value) {
         firstNameInput.setValue(value);
         return this;
     }
 
-    public registrationPage setLastName(String value) {
+    public RegistrationPage setLastName(String value) {
         lastNameInput.setValue(value);
         return this;
     }
 
-    public registrationPage setUserEmail(String value) {
+    public RegistrationPage setUserEmail(String value) {
         userEmailInput.setValue(value);
         return this;
     }
 
-    public registrationPage setUserNumber(String value) {
+    public RegistrationPage setUserNumber(String value) {
         userNumber.setValue(value);
         return this;
     }
 
-    public registrationPage setGender(String value) {
+    public RegistrationPage setGender(String value) {
         genderWrapper.$(byText(value)).click();
         return this;
     }
 
-    public registrationPage setDateOfBirth(String day, String month, String year) {
+    public RegistrationPage setDateOfBirth(String day, String month, String year) {
         calendarInput.click();
         calendarComponent.setDate(day, month, year);
 
         return this;
     }
 
-    public registrationPage setSubject(String subject) {
+    public RegistrationPage setSubject(String subject) {
         subjectsInput.setValue(subject).sendKeys(Keys.ENTER);
         return this;
     }
 
-    public registrationPage setHobby(String hobby) {
+    public RegistrationPage setHobby(String hobby) {
         hobbiesWrapper.$(byText(hobby)).click();
         return this;
     }
 
-    public registrationPage setPicture(String fileName) {
+    public RegistrationPage setPicture(String fileName) {
         uploadPicture.uploadFromClasspath(fileName);
         return this;
     }
 
-    public registrationPage setCurrentAddress(String currentAddress) {
+    public RegistrationPage setCurrentAddress(String currentAddress) {
         currentAddressInput.setValue(currentAddress);
         return this;
     }
 
-    public registrationPage setState(String state) {
+    public RegistrationPage setState(String state) {
         stateComponent.click();
         stateComponent2.setValue(state).sendKeys(Keys.ENTER);
         return this;
     }
 
-    public registrationPage setCity(String city) {
+    public RegistrationPage setCity(String city) {
         cityComponent.click();
         cityComponent2.setValue(city).sendKeys(Keys.ENTER);
         return this;
     }
 
-    public registrationPage submit() {
+    public RegistrationPage submit() {
         submitButton.click();
         return this;
     }
 
-    public registrationPage checkResult(String key, String value) {
-        resultsTableComponent.checkResults(key, value);
+    public RegistrationPage checkResult(String key, String value) {
+        ResultsTableComponent.checkResults(key, value);
 
         return this;
     }
 
-    public registrationPage checkNoResults(){
-        resultsTableComponent.checkResultIsNotVisible();
+    public RegistrationPage checkNoResults(){
+        ResultsTableComponent.checkResultIsNotVisible();
 
 
         return this;

@@ -1,9 +1,9 @@
 import org.junit.jupiter.api.Test;
-import pages.registrationPage;
+import pages.RegistrationPage;
 
-public class registrationTests extends testBase {
+public class RegistrationWithPageObjectsTests extends TestBase {
 
-    pages.registrationPage registrationPage = new registrationPage();
+    RegistrationPage registrationPage = new RegistrationPage();
 
     @Test
     void fillFullFormTest() {
