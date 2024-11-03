@@ -2,9 +2,7 @@ import com.github.javafaker.Faker;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
 import utils.RandomUtils;
-
 import java.util.Locale;
-
 import static utils.RandomUtils.getRandomCityByState;
 
 public class RegistrationWithFakerTests extends TestBase {
@@ -26,7 +24,7 @@ public class RegistrationWithFakerTests extends TestBase {
     String userState = faker.options().option("NCR", "Uttar Pradesh", "Haryana", "Rajasthan");
     String userCity = getRandomCityByState(userState);
     String userBirthYear = String.valueOf(faker.number().numberBetween(1924, 2010));
-    String userBirthMonth = setRandomValue("February", "March", "April", "May", "June", "July", "August", "September",
+    String userBirthMonth = RandomUtils.setRandomValue("February", "March", "April", "May", "June", "July", "August", "September",
             "October", "November", "December");
     String userBirthDay = String.valueOf(faker.number().numberBetween(1,28));
 
@@ -34,6 +32,7 @@ public class RegistrationWithFakerTests extends TestBase {
     void fillFullFormTest() {
         registrationPage
                 .openPage()
+                .removeBanners()
                 .setFirstName(firstName)
                 .setLastName(lastName)
                 .setUserEmail(userEmail)
@@ -58,7 +57,7 @@ public class RegistrationWithFakerTests extends TestBase {
                 .checkResult("Hobbies", userInterest)
                 .checkResult("Picture", picturePath)
                 .checkResult("Address", userAddress)
-                .checkResult("State and City", userState + "" + userCity);
+                .checkResult("State and City", userState + " " + userCity);
 
     }
 
@@ -66,6 +65,7 @@ public class RegistrationWithFakerTests extends TestBase {
     void minimalFormTest(){
         registrationPage
                 .openPage()
+                .removeBanners()
                 .setFirstName(firstName)
                 .setLastName(lastName)
                 .setGender(userGender)
@@ -81,6 +81,7 @@ public class RegistrationWithFakerTests extends TestBase {
     void invalidNumberTest(){
         registrationPage
                 .openPage()
+                .removeBanners()
                 .setFirstName(firstName)
                 .setLastName(lastName)
                 .setGender(userGender)

@@ -103,7 +103,7 @@ public class RandomUtils {
         return getRandomItemFromArray(states);
     }
 
-    public String setRandomValue (String ... strings){
+    public static String setRandomValue(String... strings){
         ArrayList<String> values = new ArrayList<>();
         Collections.addAll(values,strings);
         String item = values.get(faker.number().numberBetween(0, values.size()-1));

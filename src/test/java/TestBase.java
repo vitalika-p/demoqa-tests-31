@@ -13,5 +13,6 @@ public class TestBase {
         Configuration.browser = "chrome";
         Configuration.baseUrl = "https://demoqa.com";
         Configuration.pageLoadStrategy = "eager";
+        Configuration.holdBrowserOpen = false;
     }
 }
