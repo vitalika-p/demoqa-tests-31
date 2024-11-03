@@ -23,10 +23,10 @@ public class RegistrationWithFakerTests extends TestBase {
     String picturePath = "image.png";
     String userState = faker.options().option("NCR", "Uttar Pradesh", "Haryana", "Rajasthan");
     String userCity = getRandomCityByState(userState);
-    String userBirthYear = String.valueOf(faker.number().numberBetween(1924, 2010));
-    String userBirthMonth = RandomUtils.setRandomValue("February", "March", "April", "May", "June", "July", "August", "September",
+    String userBirthYear = String.valueOf(faker.number().numberBetween(1950, 2015));
+    String userBirthMonth = RandomUtils.setRandomValue("January", "February", "March", "April", "May", "June", "July", "August", "September",
             "October", "November", "December");
-    String userBirthDay = String.valueOf(faker.number().numberBetween(1,28));
+    String userBirthDay = String.valueOf(faker.number().numberBetween(1,31));
 
     @Test
     void fillFullFormTest() {
