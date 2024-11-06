@@ -36,7 +36,7 @@ public class PracticeFormTests {
         $("#subjectsInput").setValue("B").sendKeys(Keys.ENTER);
         $("#hobbies-checkbox-2").parent().click();
         $("#hobbies-checkbox-3").parent().click();
-        $("#uploadPicture").uploadFromClasspath("image.png");
+        $("#uploadPicture").uploadFromClasspath("image1.png");
         $("#currentAddress").setValue("Tverskaya,100");
         $("#state").click();
         $("#react-select-3-input").setValue("N").sendKeys(Keys.ENTER);
@@ -53,7 +53,7 @@ public class PracticeFormTests {
         $(".table-responsive").shouldHave(text("Biology"));
         $(".table-responsive").shouldHave(text("Reading"));
         $(".table-responsive").shouldHave(text("Music"));
-        $(".table-responsive").shouldHave(text("image.png"));
+        $(".table-responsive").shouldHave(text("image1.png"));
         $(".table-responsive").shouldHave(text("Tverskaya,100"));
         $(".table-responsive").shouldHave(text("NCR Delhi"));
     }

@@ -20,7 +20,7 @@ public class RegistrationWithFakerTests extends TestBase {
     String userAddress = faker.address().streetAddress();
     String userSubject = faker.options().option("Accounting", "Maths", "Arts", "Social Studies", "Chemistry", "Computer Science", "Commerce", "Physics", "Economics");
     String userInterest = faker.options().option("Sports", "Reading", "Music");
-    String picturePath = "image.png";
+    String picturePath = RandomUtils.getRandomFile();
     String userState = faker.options().option("NCR", "Uttar Pradesh", "Haryana", "Rajasthan");
     String userCity = getRandomCityByState(userState);
     String userBirthYear = String.valueOf(faker.number().numberBetween(1950, 2015));

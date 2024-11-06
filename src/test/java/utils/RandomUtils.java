@@ -9,23 +9,7 @@ import java.util.concurrent.ThreadLocalRandom;
 
 public class RandomUtils {
 
-    private static final Faker faker = new Faker();
-
-    public static void main(String[] args) {
-        System.out.println(getRandomString(10));
-        System.out.println(getRandomEmail());
-        System.out.println(getRandomAddress());
-        System.out.println(getRandomInt(111, 99999999));
-        System.out.println(getRandomPhone());
-        System.out.println(getRandomGender());
-        System.out.println(getRandomState());
-        System.out.println(getRandomSubject());
-        System.out.println(getRandomHobbie());
-        System.out.println(getRandomMonth());
-        System.out.println(getRandomBirthYear());
-
-    }
-
+    private static final Faker FAKER = new Faker();
 
     public static String getRandomString(int len) {
         String AB = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
@@ -61,6 +45,11 @@ public class RandomUtils {
         return getRandomItemFromArray(genders);
     }
 
+    public static String getRandomFile() {
+        String[] files = {"image1.png", "image2.png", "image3.png"};
+        return FAKER.options().option(files);
+    }
+
     public static String getRandomItemFromArray(String[] array) {
         int index = getRandomInt(0, array.length - 1);
 
@@ -75,11 +64,7 @@ public class RandomUtils {
         return getRandomItemFromArray(subjects);
     }
 
-    public static String getRandomHobbie() {
-        String[] hobbies = {"Sports", "Reading", "Music"};
 
-        return getRandomItemFromArray(hobbies);
-    }
 
     public static String getRandomMonth() {
         String[] months = {"January", "February", "March", "April",
@@ -106,7 +91,7 @@ public class RandomUtils {
     public static String setRandomValue(String... strings){
         ArrayList<String> values = new ArrayList<>();
         Collections.addAll(values,strings);
-        String item = values.get(faker.number().numberBetween(0, values.size()-1));
+        String item = values.get(FAKER.number().numberBetween(0, values.size()-1));
         return item;
     }
 
