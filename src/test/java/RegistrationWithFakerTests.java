@@ -1,8 +1,10 @@
 import com.github.javafaker.Faker;
+import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.Test;
 import pages.RegistrationPage;
 import utils.RandomUtils;
 import java.util.Locale;
+import static io.qameta.allure.Allure.step;
 import static utils.RandomUtils.getRandomCityByState;
 
 public class RegistrationWithFakerTests extends TestBase {
@@ -28,11 +30,16 @@ public class RegistrationWithFakerTests extends TestBase {
             "October", "November", "December");
     String userBirthDay = String.valueOf(faker.number().numberBetween(1,31));
 
+    @Tag("Smoke")
+    @Tag("Заполнение формы регистрации")
     @Test
     void fillFullFormTest() {
+        step("Открыть страницу с формой", () -> {
+            registrationPage.openPage() .removeBanners();
+        });
+
+        step("Заполнить поля", () -> {
         registrationPage
-                .openPage()
-                .removeBanners()
                 .setFirstName(firstName)
                 .setLastName(lastName)
                 .setUserEmail(userEmail)
@@ -44,9 +51,14 @@ public class RegistrationWithFakerTests extends TestBase {
                 .setPicture(picturePath)
                 .setCurrentAddress(userAddress)
                 .setState(userState)
-                .setCity(userCity)
-                .submit();
+                .setCity(userCity);
+        });
 
+        step("Отправить форму", () -> {
+            registrationPage .submit();
+        });
+
+        step("Проверить отображение полей в таблице", () -> {
         registrationPage
                 .checkResult("Student Name", firstName + " " + lastName)
                 .checkResult("Student Email", userEmail)
@@ -58,37 +70,58 @@ public class RegistrationWithFakerTests extends TestBase {
                 .checkResult("Picture", picturePath)
                 .checkResult("Address", userAddress)
                 .checkResult("State and City", userState + " " + userCity);
-
+        });
     }
 
+    @Tag("Smoke")
+    @Tag("Заполнение минимального количества полей")
     @Test
     void minimalFormTest(){
+        step("Открыть страницу с формой", () -> {
+            registrationPage.openPage() .removeBanners();
+        });
+
+        step("Заполнить поля", () -> {
         registrationPage
-                .openPage()
-                .removeBanners()
                 .setFirstName(firstName)
                 .setLastName(lastName)
                 .setGender(userGender)
-                .setUserNumber(userNumber)
-                .submit();
+                .setUserNumber(userNumber);
+        });
 
+        step("Отправить форму", () -> {
+            registrationPage .submit();
+        });
+
+        step("Проверить отображение полей в таблице", () -> {
         registrationPage
                 .checkResult("Student Name", firstName + " " + lastName)
                 .checkResult("Gender", userGender);
-
+        });
     }
+
+    @Tag("Simple")
+    @Tag("Некорректный номер телефона")
     @Test
     void invalidNumberTest(){
+        step("Открыть страницу с формой", () -> {
+            registrationPage.openPage() .removeBanners();
+        });
+
+        step("Заполнить поля", () -> {
         registrationPage
-                .openPage()
-                .removeBanners()
                 .setFirstName(firstName)
                 .setLastName(lastName)
                 .setGender(userGender)
                 .setUserNumber(invalidUserNumber)
-                .setDateOfBirth(userBirthDay, userBirthMonth, userBirthYear)
-                .submit();
+                .setDateOfBirth(userBirthDay, userBirthMonth, userBirthYear);
+        });
+        step("Отправить форму", () -> {
+            registrationPage .submit();
+        });
 
+        step("Проверить отображение полей в таблице", () -> {
         registrationPage.checkNoResults();
+        });
     }
 }
