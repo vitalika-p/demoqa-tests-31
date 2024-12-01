@@ -119,7 +119,6 @@ public class RegistrationWithFakerTests extends TestBase {
         step("Отправить форму", () -> {
             registrationPage .submit();
         });
-
         step("Проверить отображение полей в таблице", () -> {
         registrationPage.checkNoResults();
         });
