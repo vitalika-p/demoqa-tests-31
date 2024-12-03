@@ -11,11 +11,13 @@ public class TestBase {
     
     @BeforeAll
     static void beforeAll() {
-        Configuration.browserSize = "1920x1080";
-        Configuration.browser = "chrome";
+        Configuration.browserSize = System.getProperty("browserSize", "1920x1080");
+        Configuration.browser = System.getProperty("browserName", "chrome");
         Configuration.baseUrl = "https://demoqa.com";
         Configuration.pageLoadStrategy = "eager";
         Configuration.holdBrowserOpen = false;
+        Configuration.remote = System.getProperty("remoteUrl");
+        Configuration.browserVersion = System.getProperty("browserVersion");
         Configuration.remote = "https://user1:1234@selenoid.autotests.cloud/wd/hub";
 
 
