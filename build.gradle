@@ -22,11 +22,11 @@ repositories {
 
 dependencies {
     testImplementation platform('org.junit:junit-bom:5.10.0')
-    testImplementation 'org.junit.jupiter:junit-jupiter'
+    testImplementation 'org.junit.jupiter:junit-jupiter:5.10.0'
     testImplementation 'org.slf4j:slf4j-simple:2.0.7'
     testImplementation 'com.codeborne:selenide:7.5.1'
-    testImplementation 'io.qameta.allure:allure-selenide:2.29.0'
     testImplementation "com.github.javafaker:javafaker:1.0.2"
+    testImplementation 'io.qameta.allure:allure-selenide:2.29.0'
 }
 
 test {
@@ -37,7 +37,7 @@ test {
 
 tasks.withType(Test) {
     useJUnitPlatform()
-
+    systemProperties(System.getProperties())
     testLogging {
         lifecycle {
             events "started", "skipped", "failed", "standard_error", "standard_out"
